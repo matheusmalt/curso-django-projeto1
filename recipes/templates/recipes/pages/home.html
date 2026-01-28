@@ -3,13 +3,14 @@
 <body>
     <header class="main-header-container">
         <div class="main-header container">
-            <a href="/">
+            <a class="main-logo" href="/">
                 <h1>
-                    <i class="fa-solid fa-link"></i>
-                    <span>Recipes</span>
+                    <i class="fa-solid fa-link main-logo-icon"></i>
+                    <span class="main-logo-test">Recipes</span>
                 </h1>
             </a>
         </div>
     </header>
 </body>
-</html>
+
+{% include "recipes/partials/footer.html" %}
