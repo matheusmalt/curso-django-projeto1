@@ -5,6 +5,7 @@ fake = Faker('pt_BR')
 
 def make_recipe():
     return { 
+        'id': randint(10, 99),
         'title': fake.sentence(),
         'description':  fake.sentence(nb_words= 12),
         'preparation_time':  randint(1, 100),
@@ -19,7 +20,7 @@ def make_recipe():
         },
         'category': fake.sentence(nb_words=randint(1,2)),
         'cover': {
-            'url': f'https://loremflickr.com/1280/720/food,cook'
+            'url': f'https://loremflickr.com/1280/720/food,cook?random={randint(1, 100)}'
         }
 }
 

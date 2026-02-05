@@ -1,13 +1,19 @@
             <div class="recipe recipe-list-item">
                 <div class="recipe-cover">
-                    <img src="{{recipe.cover.url}}" alt="Temporário">
+                    <a href="{% url "recipes:recipe" recipe.id %}">
+                        <img src="{{recipe.cover.url}}" alt="Temporário">
+                    </a>
                     <div class="recipe-title-container">
-                        <h2 class="recipe-title">{{ recipe.title }}</h2>
+                        <h2 class="recipe-title">
+                            <a href="{% url "recipes:recipe" recipe.id %}">
+                                {{ recipe.title }}
+                            </a>
+                        </h2>
                     </div>
                     <div class="recipe-author">
                         <span class="recipe-author-item">
                             <i class="fas fa-user"></i>
-                            {{recipe.author.first_name}} {{recipe.author.last_name}}
+                            {{ recipe.author.first_name }} {{ recipe.author.last_name }}
                         </span>
                         <span class="recipe-author-item">
                             <i class="fas fa-calendar-alt"></i>
@@ -44,11 +50,22 @@
                             </div>
                         </div>
                     </div>
-                    <footer class="recipe-footer">
-                        <a href="/" class="recipe-read-more button-dark button button-full-width">
-                            <i class="fas fa-eye"></i>
-                            <span>ver mais...</span>
-                        </a>
-                    </footer>
+
+                    {% if is_detail_page != True %}
+                        <footer class="recipe-footer">
+                            <a href=" {% url "recipes:recipe" recipe.id %} " class="recipe-read-more button-dark button button-full-width">
+                                <i class="fas fa-eye"></i>
+                                <span>ver mais...</span>
+                            </a>
+                        </footer>
+                    {% endif %}
+
+                    {% if is_detail_page == True %}
+                        <div class="preparation-steps">
+                            <p>
+                                {{ recipe.preparation_steps | linebreaksbr }}
+                            </p>
+                        </div>   
+                    {% endif %}
                </div>
             </div>
